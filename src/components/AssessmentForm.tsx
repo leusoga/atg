@@ -1,0 +1,199 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { Loader2, CheckCircle2 } from 'lucide-react'
+import { submitLead } from '@/actions/lead-capture'
+
+declare global {
+  interface Window {
+    turnstile: any
+  }
+}
+
+export default function AssessmentForm() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [turnstileReady, setTurnstileReady] = useState(false)
+
+  useEffect(() => {
+    // Load Turnstile script
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.defer = true
+    script.onload = () => {
+      setTurnstileReady(true)
+    }
+    document.head.appendChild(script)
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setError(null)
+
+    // Get Turnstile token
+    const turnstileToken = window.turnstile?.getResponse()
+    if (!turnstileToken) {
+      setError('Please complete the bot verification')
+      setIsLoading(false)
+      return
+    }
+
+    const formData = new FormData(e.currentTarget)
+    formData.append('turnstileToken', turnstileToken)
+
+    const result = await submitLead(formData)
+
+    if (result.success) {
+      setIsSuccess(true)
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSuccess(false)
+        e.currentTarget.reset()
+        window.turnstile?.reset()
+      }, 3000)
+    } else {
+      setError(result.error || 'Failed to submit form. Please try again.')
+      window.turnstile?.reset()
+    }
+
+    setIsLoading(false)
+  }
+
+  return (
+    <section id="contact" className="py-20 md:py-32 bg-primary-bg">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-text mb-4">
+            Ready to Transform Your IT?
+          </h2>
+          <p className="text-xl text-secondary-text">
+            Get a free IT assessment from our experts
+          </p>
+        </div>
+
+        {isSuccess ? (
+          <div className="bg-secondary-bg border border-accent-primary rounded-xl p-8 text-center">
+            <CheckCircle2 className="w-16 h-16 text-accent-primary mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-primary-text mb-2">Thank You!</h3>
+            <p className="text-secondary-text">
+              We've received your assessment request. Our team will contact you within 24 hours.
+            </p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="bg-secondary-bg border border-border-color rounded-xl p-8 space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-primary-text font-semibold mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-tertiary-bg border border-border-color rounded-lg text-primary-text placeholder-secondary-text focus:border-accent-primary focus:outline-none transition"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-primary-text font-semibold mb-2">
+                  Business Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-tertiary-bg border border-border-color rounded-lg text-primary-text placeholder-secondary-text focus:border-accent-primary focus:outline-none transition"
+                  placeholder="john@company.com"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="company" className="block text-primary-text font-semibold mb-2">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  required
+                  className="w-full px-4 py-3 bg-tertiary-bg border border-border-color rounded-lg text-primary-text placeholder-secondary-text focus:border-accent-primary focus:outline-none transition"
+                  placeholder="Your Company"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-primary-text font-semibold mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className="w-full px-4 py-3 bg-tertiary-bg border border-border-color rounded-lg text-primary-text placeholder-secondary-text focus:border-accent-primary focus:outline-none transition"
+                  placeholder="(480) 000-0000"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-primary-text font-semibold mb-2">
+                Tell us about your IT challenges
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                className="w-full px-4 py-3 bg-tertiary-bg border border-border-color rounded-lg text-primary-text placeholder-secondary-text focus:border-accent-primary focus:outline-none transition resize-none"
+                placeholder="What IT issues are you facing?"
+              />
+            </div>
+
+            {error && (
+              <div className="bg-red-500 bg-opacity-10 border border-red-500 rounded-lg p-4">
+                <p className="text-red-400">{error}</p>
+              </div>
+            )}
+
+            {/* Turnstile Captcha */}
+            {turnstileReady && (
+              <div className="flex justify-center">
+                <div
+                  id="cf-turnstile"
+                  data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  data-theme="dark"
+                />
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full px-8 py-3 bg-accent-primary text-primary-bg rounded-lg font-semibold hover:bg-accent-secondary transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 size={20} className="animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                'Get Your Free IT Assessment'
+              )}
+            </button>
+
+            <p className="text-sm text-secondary-text text-center">
+              We respect your privacy. Your information will only be used to contact you about your assessment.
+            </p>
+          </form>
+        )}
+      </div>
+    </section>
+  )
+}

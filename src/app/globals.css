@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700&display=swap');
+
+:root {
+  --primary-bg: #0f1419;
+  --secondary-bg: #1a1f29;
+  --tertiary-bg: #252b38;
+  --primary-text: #f0f1f3;
+  --secondary-text: #b4b8c1;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #fbbf24;
+  --accent-light: #fcd34d;
+  --border-color: #3d444f;
+}
+
+body {
+  @apply bg-primary-bg text-primary-text;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default form styling for better control */
+input, textarea, select {
+  @apply appearance-none;
+}
+
+/* Focus styles for accessibility */
+input:focus, textarea:focus, select:focus {
+  @apply outline-none;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
