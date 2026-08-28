@@ -28,8 +28,8 @@ export default function Navbar() {
             <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-accent-primary to-accent-secondary shadow-lg shadow-accent-primary/20">
               <span className="text-primary-bg font-bold text-lg">A</span>
             </div>
-            <span className="text-primary-text font-bold text-lg tracking-tight hidden sm:inline">
-              AURO NETWORKS
+            <span className="text-primary-text font-bold text-base tracking-tight hidden lg:inline whitespace-nowrap">
+              AURO TECHNOLOGY GROUP
             </span>
           </Link>
 

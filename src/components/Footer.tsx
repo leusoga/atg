@@ -32,7 +32,7 @@ export default function Footer() {
               <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-accent-primary to-accent-secondary">
                 <span className="text-primary-bg font-bold text-lg">A</span>
               </div>
-              <span className="font-bold text-primary-text tracking-tight">AURO NETWORKS</span>
+              <span className="font-bold text-primary-text tracking-tight">AURO TECHNOLOGY GROUP</span>
             </div>
             <p className="text-secondary-text text-sm leading-relaxed">
               Phoenix Valley's trusted IT solutions provider for small and medium businesses.
