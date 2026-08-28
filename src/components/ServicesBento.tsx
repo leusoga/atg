@@ -2,22 +2,18 @@ import Link from 'next/link'
 
 const services = [
   {
-    icon: HardDrive,
     title: 'Backup & Disaster Recovery',
     description: 'Protect your critical business data with enterprise-grade backup and rapid recovery solutions.',
   },
   {
-    icon: Cloud,
     title: 'Cloud & Virtualization',
     description: 'Modernize your infrastructure with scalable cloud solutions and virtual environments.',
   },
   {
-    icon: Shield,
     title: 'Network Design & Cybersecurity',
     description: 'Build secure networks and defend against modern cyber threats with comprehensive security strategies.',
   },
   {
-    icon: Phone,
     title: 'VoIP Services',
     description: 'Streamline communication with unified VoIP solutions tailored to your business needs.',
   },
