@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { submitLead } from '@/actions/lead-capture'
 import Reveal from '@/components/ui/Reveal'
 import BlobBackground from '@/components/ui/BlobBackground'
@@ -79,9 +80,28 @@ export default function AssessmentForm() {
   return (
     <section id="contact" className="relative overflow-hidden py-20 md:py-28 bg-primary-bg">
       <BlobBackground className="absolute -bottom-40 -right-40 w-[560px] h-[560px] opacity-70" />
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <Reveal className="hidden lg:block">
+          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border-color shadow-2xl shadow-black/20">
+            <Image
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+              alt="Two colleagues sharing a high five in an office"
+              fill
+              sizes="35vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary-bg via-primary-bg/10 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 bg-secondary-bg/90 backdrop-blur border border-border-color rounded-xl p-4">
+              <p className="text-primary-text text-sm leading-relaxed">
+                "We believe the spirit under which your company was formed is a vital part of its future growth."
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="max-w-xl mx-auto lg:mx-0 w-full">
         <Reveal>
-          <div className="text-center mb-12">
+          <div className="text-center lg:text-left mb-12">
             <span className="text-accent-primary text-sm font-semibold tracking-wide uppercase">Get Started</span>
             <h2 className="text-3xl md:text-5xl font-bold text-primary-text mt-3 mb-4 tracking-tight">
               Ready to transform your IT?
@@ -213,6 +233,7 @@ export default function AssessmentForm() {
             </p>
           </form>
         )}
+        </div>
       </div>
     </section>
   )

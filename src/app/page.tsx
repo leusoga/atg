@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import HeroSection from '@/components/HeroSection'
 import ServicesBento from '@/components/ServicesBento'
 import AudienceSegmentation from '@/components/AudienceSegmentation'
@@ -52,15 +53,29 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {philosophy.map((item, idx) => (
-              <Reveal key={item.title} delay={idx * 0.1}>
-                <div className="h-full bg-secondary-bg p-8 rounded-2xl border border-border-color hover:border-accent-primary/30 transition">
-                  <h3 className="text-xl font-bold text-accent-primary mb-3">{item.title}</h3>
-                  <p className="text-secondary-text leading-relaxed">{item.description}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+            <Reveal className="lg:col-span-2">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border-color shadow-2xl shadow-black/20 max-w-sm mx-auto lg:max-w-none">
+                <Image
+                  src="https://images.unsplash.com/photo-1536148935331-408321065b18?auto=format&fit=crop&w=800&q=80"
+                  alt="An IT professional focused on a workstation"
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 35vw"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+
+            <div className="lg:col-span-3 flex flex-col gap-5">
+              {philosophy.map((item, idx) => (
+                <Reveal key={item.title} delay={idx * 0.1}>
+                  <div className="bg-secondary-bg p-7 rounded-2xl border border-border-color hover:border-accent-primary/30 transition">
+                    <h3 className="text-xl font-bold text-accent-primary mb-2">{item.title}</h3>
+                    <p className="text-secondary-text leading-relaxed">{item.description}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
