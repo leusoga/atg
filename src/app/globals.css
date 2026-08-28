@@ -15,7 +15,8 @@
 }
 
 body {
-  @apply bg-primary-bg text-primary-text;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
   font-family: 'Inter', sans-serif;
 }
 
@@ -31,15 +32,15 @@ html {
 
 /* Remove default form styling for better control */
 input, textarea, select {
-  @apply appearance-none;
+  appearance: none;
 }
 
 /* Focus styles for accessibility */
 input:focus, textarea:focus, select:focus {
-  @apply outline-none;
+  outline: none;
 }
 
 /* Smooth transitions */
 * {
-  @apply transition-colors duration-200;
+  transition: color 0.2s;
 }
