@@ -1,45 +1,59 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <nav className="sticky top-0 z-50 bg-secondary-bg border-b border-border-color">
+    <nav
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-secondary-bg/70 backdrop-blur-xl border-b border-border-color shadow-lg shadow-black/20'
+          : 'bg-transparent border-b border-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent-primary rounded-lg flex items-center justify-center">
+        <div className="flex justify-between items-center h-[4.5rem] py-3">
+          <Link href="/" className="flex items-center space-x-2.5">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-accent-primary to-accent-secondary shadow-lg shadow-accent-primary/20">
               <span className="text-primary-bg font-bold text-lg">A</span>
             </div>
-            <span className="text-primary-text font-bold text-lg hidden sm:inline">
+            <span className="text-primary-text font-bold text-lg tracking-tight hidden sm:inline">
               AURO NETWORKS
             </span>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-primary-text hover:text-accent-primary transition">
-              HOME
+          <div className="hidden md:flex items-center space-x-1">
+            <Link href="/" className="px-4 py-2 rounded-lg text-sm font-medium text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Home
             </Link>
-            <Link href="#services" className="text-primary-text hover:text-accent-primary transition">
-              SERVICES
+            <Link href="#services" className="px-4 py-2 rounded-lg text-sm font-medium text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Services
             </Link>
-            <Link href="#about" className="text-primary-text hover:text-accent-primary transition">
-              ABOUT
+            <Link href="#approach" className="px-4 py-2 rounded-lg text-sm font-medium text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Approach
+            </Link>
+            <Link href="#about" className="px-4 py-2 rounded-lg text-sm font-medium text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              About
             </Link>
             <Link
               href="#contact"
-              className="px-4 py-2 bg-accent-primary text-primary-bg rounded-lg font-semibold hover:bg-accent-secondary transition"
+              className="ml-2 px-5 py-2.5 rounded-lg bg-accent-primary text-primary-bg text-sm font-semibold hover:bg-accent-secondary transition shadow-lg shadow-accent-primary/20"
             >
-              CONTACT
+              Get Assessment
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-primary-text hover:text-accent-primary transition"
@@ -57,23 +71,25 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-4 border-t border-border-color pt-4">
-            <Link href="/" className="block text-primary-text hover:text-accent-primary transition">
-              HOME
+          <div className="md:hidden pb-4 space-y-1 border-t border-border-color pt-4">
+            <Link href="/" className="block px-4 py-2 rounded-lg text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Home
             </Link>
-            <Link href="#services" className="block text-primary-text hover:text-accent-primary transition">
-              SERVICES
+            <Link href="#services" className="block px-4 py-2 rounded-lg text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Services
             </Link>
-            <Link href="#about" className="block text-primary-text hover:text-accent-primary transition">
-              ABOUT
+            <Link href="#approach" className="block px-4 py-2 rounded-lg text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              Approach
+            </Link>
+            <Link href="#about" className="block px-4 py-2 rounded-lg text-secondary-text hover:text-primary-text hover:bg-tertiary-bg/60 transition">
+              About
             </Link>
             <Link
               href="#contact"
-              className="block px-4 py-2 bg-accent-primary text-primary-bg rounded-lg font-semibold text-center hover:bg-accent-secondary transition"
+              className="block mt-2 px-4 py-2.5 rounded-lg bg-accent-primary text-primary-bg font-semibold text-center hover:bg-accent-secondary transition"
             >
-              CONTACT
+              Get Assessment
             </Link>
           </div>
         )}

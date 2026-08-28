@@ -23,91 +23,93 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-secondary-bg border-t border-border-color">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
-          {/* Brand */}
+    <footer className="relative bg-secondary-bg border-t border-border-color">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-primary/50 to-transparent" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-10">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-accent-primary rounded-lg flex items-center justify-center">
+            <div className="flex items-center space-x-2.5 mb-4">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-accent-primary to-accent-secondary">
                 <span className="text-primary-bg font-bold text-lg">A</span>
               </div>
-              <span className="font-bold text-primary-text">AURO NETWORKS</span>
+              <span className="font-bold text-primary-text tracking-tight">AURO NETWORKS</span>
             </div>
-            <p className="text-secondary-text text-sm">
+            <p className="text-secondary-text text-sm leading-relaxed">
               Phoenix Valley's trusted IT solutions provider for small and medium businesses.
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-primary-text mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-primary-text mb-4 text-sm tracking-wide uppercase">Quick Links</h3>
+            <ul className="space-y-2.5">
               <li>
-                <Link href="/" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="/" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#approach" className="text-secondary-text hover:text-accent-primary transition text-sm">
+                  Approach
+                </Link>
+              </li>
+              <li>
+                <Link href="#contact" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="font-semibold text-primary-text mb-4">Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-primary-text mb-4 text-sm tracking-wide uppercase">Services</h3>
+            <ul className="space-y-2.5">
               <li>
-                <Link href="#" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Backup & DR
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Cloud Solutions
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   Cybersecurity
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-secondary-text hover:text-accent-primary transition">
+                <Link href="#services" className="text-secondary-text hover:text-accent-primary transition text-sm">
                   VoIP Services
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-primary-text mb-4">Contact Us</h3>
+            <h3 className="font-semibold text-primary-text mb-4 text-sm tracking-wide uppercase">Contact Us</h3>
             <div className="space-y-3">
               <a
                 href="tel:480-900-8030"
-                className="flex items-center gap-2 text-secondary-text hover:text-accent-primary transition"
+                className="flex items-center gap-2.5 text-secondary-text hover:text-accent-primary transition text-sm"
               >
                 <Phone />
                 <span>480-900-8030</span>
               </a>
               <a
                 href="mailto:info@auronetworks.com"
-                className="flex items-center gap-2 text-secondary-text hover:text-accent-primary transition"
+                className="flex items-center gap-2.5 text-secondary-text hover:text-accent-primary transition text-sm"
               >
                 <Mail />
                 <span>info@auronetworks.com</span>
               </a>
-              <div className="flex items-start gap-2 text-secondary-text">
-                <div className="flex-shrink-0 mt-1">
+              <div className="flex items-start gap-2.5 text-secondary-text text-sm">
+                <div className="flex-shrink-0 mt-0.5">
                   <MapPin />
                 </div>
                 <span>Phoenix Valley, AZ</span>
@@ -116,7 +118,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border-border-color pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-secondary-text text-sm">

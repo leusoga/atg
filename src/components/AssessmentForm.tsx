@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { submitLead } from '@/actions/lead-capture'
+import Reveal from '@/components/ui/Reveal'
+import BlobBackground from '@/components/ui/BlobBackground'
 
 const Loader2 = () => (
   <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -75,19 +77,23 @@ export default function AssessmentForm() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-primary-bg">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary-text mb-4">
-            Ready to Transform Your IT?
-          </h2>
-          <p className="text-xl text-secondary-text">
-            Get a free IT assessment from our experts
-          </p>
-        </div>
+    <section id="contact" className="relative overflow-hidden py-20 md:py-28 bg-primary-bg">
+      <BlobBackground className="absolute -bottom-40 -right-40 w-[560px] h-[560px] opacity-70" />
+      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="text-center mb-12">
+            <span className="text-accent-primary text-sm font-semibold tracking-wide uppercase">Get Started</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-primary-text mt-3 mb-4 tracking-tight">
+              Ready to transform your IT?
+            </h2>
+            <p className="text-lg text-secondary-text">
+              Get a free IT assessment from our experts
+            </p>
+          </div>
+        </Reveal>
 
         {isSuccess ? (
-          <div className="bg-secondary-bg border border-accent-primary rounded-xl p-8 text-center">
+          <div className="bg-secondary-bg border border-accent-primary rounded-2xl p-8 text-center">
             <div className="w-16 h-16 text-accent-primary mx-auto mb-4">
               <CheckCircle2 />
             </div>
@@ -97,7 +103,7 @@ export default function AssessmentForm() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-secondary-bg border border-border-color rounded-xl p-8 space-y-6">
+          <form onSubmit={handleSubmit} className="bg-secondary-bg border border-border-color rounded-2xl p-8 space-y-6 shadow-2xl shadow-black/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-primary-text font-semibold mb-2">
