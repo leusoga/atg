@@ -1,22 +1,23 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700&display=swap');
 
-:root {
-  --primary-bg: #0f1419;
-  --secondary-bg: #1a1f29;
-  --tertiary-bg: #252b38;
-  --primary-text: #f0f1f3;
-  --secondary-text: #b4b8c1;
-  --accent-primary: #f59e0b;
-  --accent-secondary: #fbbf24;
-  --accent-light: #fcd34d;
-  --border-color: #3d444f;
+@import "tailwindcss";
+
+@theme {
+  --color-primary-bg: #0f1419;
+  --color-secondary-bg: #1a1f29;
+  --color-tertiary-bg: #252b38;
+  --color-primary-text: #f0f1f3;
+  --color-secondary-text: #b4b8c1;
+  --color-accent-primary: #f59e0b;
+  --color-accent-secondary: #fbbf24;
+  --color-accent-light: #fcd34d;
+  --color-border-color: #3d444f;
+  --background-image-gradient-obsidian: linear-gradient(135deg, #1a1f29 0%, #252b38 100%);
 }
 
 body {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
   font-family: 'Inter', sans-serif;
 }
 
