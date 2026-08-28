@@ -1,5 +1,5 @@
-const CheckCircle2 = () => (
-  <svg className="text-accent-primary" size={20} viewBox="0 0 24 24" fill="currentColor">
+const CheckCircle = () => (
+  <svg className="w-5 h-5 text-accent-primary" viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
   </svg>
 )
@@ -54,7 +54,7 @@ export default function ProcessTimeline() {
                       {step.number}
                     </div>
                   </div>
-                  <CheckCircle2 className="text-accent-primary flex-shrink-0 mt-1" size={20} />
+                  <CheckCircle />
                 </div>
                 <h3 className="text-xl font-bold text-primary-text mb-3">{step.title}</h3>
                 <p className="text-secondary-text leading-relaxed">{step.description}</p>

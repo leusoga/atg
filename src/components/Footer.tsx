@@ -96,18 +96,20 @@ export default function Footer() {
                 href="tel:480-900-8030"
                 className="flex items-center gap-2 text-secondary-text hover:text-accent-primary transition"
               >
-                <Phone size={18} />
+                <Phone />
                 <span>480-900-8030</span>
               </a>
               <a
                 href="mailto:info@auronetworks.com"
                 className="flex items-center gap-2 text-secondary-text hover:text-accent-primary transition"
               >
-                <Mail size={18} />
+                <Mail />
                 <span>info@auronetworks.com</span>
               </a>
               <div className="flex items-start gap-2 text-secondary-text">
-                <MapPin size={18} className="flex-shrink-0 mt-1" />
+                <div className="flex-shrink-0 mt-1">
+                  <MapPin />
+                </div>
                 <span>Phoenix Valley, AZ</span>
               </div>
             </div>

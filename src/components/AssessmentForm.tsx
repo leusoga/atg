@@ -88,7 +88,9 @@ export default function AssessmentForm() {
 
         {isSuccess ? (
           <div className="bg-secondary-bg border border-accent-primary rounded-xl p-8 text-center">
-            <CheckCircle2 className="w-16 h-16 text-accent-primary mx-auto mb-4" />
+            <div className="w-16 h-16 text-accent-primary mx-auto mb-4">
+              <CheckCircle2 />
+            </div>
             <h3 className="text-2xl font-bold text-primary-text mb-2">Thank You!</h3>
             <p className="text-secondary-text">
               We've received your assessment request. Our team will contact you within 24 hours.
@@ -192,7 +194,7 @@ export default function AssessmentForm() {
             >
               {isLoading ? (
                 <>
-                  <Loader2 size={20} className="animate-spin" />
+                  <Loader2 />
                   Submitting...
                 </>
               ) : (

@@ -1,29 +1,5 @@
 import Link from 'next/link'
 
-const HardDrive = () => (
-  <svg className="text-primary-bg" size={24} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19H3v-2h2m0 0V9a2 2 0 012-2h10a2 2 0 012 2v8h2v2h-2m-6-2H9m0 0h6m-6 0v3m0-3V9" />
-  </svg>
-)
-
-const Cloud = () => (
-  <svg className="text-primary-bg" size={24} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-  </svg>
-)
-
-const Shield = () => (
-  <svg className="text-primary-bg" size={24} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-)
-
-const Phone = () => (
-  <svg className="text-primary-bg" size={24} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-  </svg>
-)
-
 const services = [
   {
     icon: HardDrive,
@@ -59,15 +35,28 @@ export default function ServicesBento() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => {
-            const Icon = service.icon
+          {services.map((service, idx) => {
+            const icons = [
+              <svg key="backup" className="w-6 h-6 text-primary-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19H3v-2h2m0 0V9a2 2 0 012-2h10a2 2 0 012 2v8h2v2h-2m-6-2H9m0 0h6m-6 0v3m0-3V9" />
+              </svg>,
+              <svg key="cloud" className="w-6 h-6 text-primary-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>,
+              <svg key="shield" className="w-6 h-6 text-primary-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>,
+              <svg key="phone" className="w-6 h-6 text-primary-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>,
+            ]
             return (
               <div
                 key={service.title}
                 className="bg-secondary-bg border border-border-color p-8 rounded-xl hover:border-accent-primary transition-all hover:shadow-2xl hover:-translate-y-1"
               >
                 <div className="w-12 h-12 bg-accent-primary rounded-lg flex items-center justify-center mb-4">
-                  <Icon />
+                  {icons[idx]}
                 </div>
                 <h3 className="text-xl font-bold text-accent-primary mb-3">{service.title}</h3>
                 <p className="text-secondary-text mb-4 leading-relaxed">{service.description}</p>
